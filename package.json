@@ -1,0 +1,29 @@
+{
+  "name": "monitor-services",
+  "version": "1.0.0",
+  "description": "mOnitor - downtime happens. Get notified!",
+  "homepage": "http://monitor.ciro-maciel.me/",
+  "license": "CC-BY-NC-SA-4.0",
+  "private": false,
+  "author": {
+    "name": "Ciro Cesar Maciel",
+    "email": "me@ciro-maciel.me"
+  },
+  "scripts": {
+    "services:develop:run": "serverless offline --port 3009 start",
+    "services:develop:debug": "export SLS_DEBUG=* && node --inspect serverless offline --port 3009 start",
+    "services:deploy:test": "serverless deploy --stage test --verbose",
+    "services:deploy:prod": "serverless deploy --stage prod --verbose"
+  },
+  "dependencies": {
+    "@ciro-maciel/utility": "^2.1.4",
+    "aws-sdk": "^2.647.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.67.0",
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-dynamodb-local": "^0.2.38",
+    "serverless-offline": "^3.8.3"
+  }
+}
