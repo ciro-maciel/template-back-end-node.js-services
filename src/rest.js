@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   console.log("REST_PATH", REST_PATH);
   console.log("process.env", process.env);
 
-  const newUrl = req.url.replace(REST_PATH, "");
+  const newUrl = req.url.replace("/s/p", "").replace("/s/t", "");
 
   req.url = newUrl;
   // req.originalUrl = newUrl;
