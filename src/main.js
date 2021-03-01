@@ -15,34 +15,26 @@ exports.handler = async (event, context) => {
     switch (event.httpMethod) {
       case "POST": {
         return context.succeed(
-          utility.http.response({ uploadURL: await imageUploadURL(event.body) })
+          utility.http.response(`ciro-maciel - mOnitor - services`)
         );
       }
       case "GET": {
         const { url = "http://ciro-maciel.me/" } = event.queryStringParameters;
 
-        return context.succeed(
-          utility.http.response(await linkInformation(url))
-        );
-        // return context.succeed(
-        //   utility.http.response({
-        //     method: event.httpMethod,
-        //     message: "workspace - ciro-maciel - services",
-        //   })
-        // );
+        return context.succeed(utility.http.response(`service performed`));
       }
       default:
-        return context.succeed(
-          utility.http.response({ method: event.httpMethod })
-        );
+        return context.succeed(utility.http.response(event.httpMethod));
     }
   } catch (error) {
-    return context.succeed(
-      utility.http.response({
-        method: event.httpMethod,
-        // message: "workspace - ciro-maciel - services",
-        message: error.message,
-      })
-    );
+    return context.succeed(utility.http.response(error.message));
+  }
+};
+
+exports.health = async (event, context) => {
+  try {
+    return context.succeed(utility.http.response(`👌 - Okay running`));
+  } catch (error) {
+    return context.succeed(utility.http.response(error.message));
   }
 };

@@ -41,6 +41,13 @@ functions:
     events:
       - http: ANY /
       - http: "ANY {proxy+}"
+  health:
+    memorySize: 128
+    timeout: 30
+    handler: src/main.health
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
 
 package:
   include:

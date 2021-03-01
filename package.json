@@ -23,6 +23,7 @@
   "devDependencies": {
     "serverless": "^1.67.0",
     "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-dynamo-stream-plugin": "^0.1.5",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^3.8.3"
   }
