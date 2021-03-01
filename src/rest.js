@@ -11,6 +11,7 @@ app.use(async (ctx, next) => {
   console.log("ctx", ctx);
 
   ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
+  ctx.originalUrl = ctx.originalUrl.replace("/s/p", "").replace("/s/t", "");
 
   console.log("ctx", ctx);
 
