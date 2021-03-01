@@ -1,26 +1,17 @@
 const serverless = require("serverless-http");
-// const serverlessExpress = require("@vendia/serverless-express");
+const Koa = require("koa");
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const helmet = require("helmet");
-const cors = require("cors");
+const app = new Koa();
 
-const app = express();
-
-app.use(cors());
-app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use((req, res, next) => {
-  req.url = req.url.replace("/s/p", "").replace("/s/t", "");
+app.use(async (ctx, next) => {
+  ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
   return next();
 });
 
-app.get("/health", (req, res) => {
-  res.status(200).send({ status: "ok", message: "👌 - Okay running" });
+app.use(async (ctx) => {
+  if (ctx.path === "/health") {
+    ctx.body = { status: "ok", message: "👌 - Okay running" };
+  }
 });
 
 module.exports.handler = serverless(app);
-// module.exports.handler = serverlessExpress({ app });
