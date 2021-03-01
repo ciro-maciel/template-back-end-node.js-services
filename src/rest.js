@@ -1,7 +1,18 @@
 const serverless = require("serverless-http");
+
 const Koa = require("koa");
+var jwt = require("koa-jwt");
 
 const app = new Koa();
+
+const { SECRET } = process.env;
+
+app.use(jwt({ secret: SECRET }).unless({ path: [/^\/health/] }));
+
+app.use(async (ctx, next) => {
+  ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
+  return next();
+});
 
 app.use(async (ctx, next) => {
   ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
