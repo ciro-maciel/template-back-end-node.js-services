@@ -8,12 +8,10 @@ const app = new Koa();
 const { SECRET } = process.env;
 
 app.use(async (ctx, next) => {
-  console.log("ctx", ctx);
+  const newUrl = ctx.url.replace("/s/p", "").replace("/s/t", "");
 
-  ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
-  ctx.originalUrl = ctx.originalUrl.replace("/s/p", "").replace("/s/t", "");
-
-  console.log("ctx", ctx);
+  ctx.url = newUrl;
+  ctx.originalUrl = newUrl;
 
   return next();
 });
@@ -21,9 +19,7 @@ app.use(async (ctx, next) => {
 app.use(jwt({ secret: SECRET }).unless({ path: ["/", /^\/health/] }));
 
 app.use(async (ctx) => {
-  console.log("ctx!!!!", ctx);
-
-  if (!ctx.path) {
+  if (ctx.path === "/") {
     ctx.body = `ciro-maciel - mOnitor - services`;
   }
 
