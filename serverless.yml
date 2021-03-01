@@ -1,8 +1,8 @@
 service: monitor-services
 
 plugins:
-  - serverless-offline
   - serverless-dotenv-plugin
+  - serverless-offline
 
 custom:
   dotenv:

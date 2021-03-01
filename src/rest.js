@@ -15,16 +15,17 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use((ctx, x, next) => {
-  console.log("ctx", ctx);
+app.use((req, res, next) => {
+  console.log("req", req);
   console.log("REST_PATH", REST_PATH);
+  console.log("process.env", process.env);
 
-  const newUrl = ctx.url.replace(REST_PATH, "");
+  const newUrl = req.url.replace(REST_PATH, "");
 
-  ctx.url = newUrl;
-  ctx.originalUrl = newUrl;
+  req.url = newUrl;
+  // req.originalUrl = newUrl;
 
-  console.log("ctx", ctx);
+  console.log("req", req);
 
   return next();
 });
