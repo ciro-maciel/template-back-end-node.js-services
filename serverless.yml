@@ -15,14 +15,8 @@ provider:
   region: us-east-1
   environment:
     TABLE_NAME: monitor-${self:provider.stage}
-    BUCKET_NAME: monitor-store-${self:provider.stage}
     STAGE: ${self:provider.stage}
   iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:PutObject
-        - s3:PutObjectAcl
-      Resource: "arn:aws:s3:::${self:provider.environment.BUCKET_NAME}/*"
     - Effect: Allow
       Action:
         - dynamodb:Query
