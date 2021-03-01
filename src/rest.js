@@ -8,6 +8,8 @@ const app = new Koa();
 const { SECRET } = process.env;
 
 app.use(async (ctx, next) => {
+  console.log("ctx", ctx);
+
   ctx.url = ctx.url.replace("/s/p", "").replace("/s/t", "");
   return next();
 });
