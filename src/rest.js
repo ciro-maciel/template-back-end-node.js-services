@@ -1,4 +1,5 @@
 const serverless = require("serverless-http");
+const serverlessExpress = require("@vendia/serverless-express");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -16,4 +17,5 @@ app.get("/health", (req, res) => {
   res.status(200).send({ status: "ok", message: "👌 - Okay running" });
 });
 
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
+module.exports.handler = serverlessExpress({ app });
