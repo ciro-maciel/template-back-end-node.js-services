@@ -20,6 +20,8 @@ app.use(async (ctx, next) => {
 app.use(jwt({ secret: SECRET }).unless({ path: ["/", /^\/health/] }));
 
 app.use(async (ctx) => {
+  console.log("ctx!!!!", ctx);
+
   if (!ctx.path) {
     ctx.body = `ciro-maciel - mOnitor - services`;
   }
