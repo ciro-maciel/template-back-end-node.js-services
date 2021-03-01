@@ -18,7 +18,12 @@ app.use(bodyParser.json());
 app.use((ctx, x, next) => {
   console.log("ctx", ctx);
 
-  ctx.url = ctx.url.replace(REST_PATH, "");
+  const newUrl = ctx.url.replace(REST_PATH, "");
+
+  ctx.url = newUrl;
+  ctx.originalUrl = newUrl;
+
+  console.log("ctx", ctx);
 
   return next();
 });
