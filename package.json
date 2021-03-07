@@ -16,7 +16,7 @@
     "services:deploy:prod": "serverless deploy --stage prod --verbose"
   },
   "dependencies": {
-    "@ciro-maciel/utility": "^2.1.4",
+    "@ciro-maciel/utility": "^2.2.4",
     "aws-sdk": "^2.647.0",
     "bent": "^7.3.12",
     "koa": "^2.13.1",
