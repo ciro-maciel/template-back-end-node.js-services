@@ -1,0 +1,98 @@
+service: template-services
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+custom:
+  dotenv:
+    basePath: config/
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    TABLE_NAME: template-services-${self:provider.stage}
+    STAGE: ${self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/*"
+
+functions:
+  rest:
+    memorySize: 128
+    timeout: 30
+    handler: src/rest.handler
+    events:
+      - http: ANY /
+      - http: "ANY /{proxy+}"
+  # index:
+  #   memorySize: 128
+  #   handler: src/main.index
+  #   timeout: 30
+  #   events:
+  #     - existingDynamoStream:
+  #         tableName: ${self:provider.environment.TABLE_NAME}
+  #         streamType: NEW_IMAGE
+  #         startingPosition: LATEST
+  # notification:
+  #   memorySize: 128
+  #   handler: src/main.notification
+  #   timeout: 30
+  #   events:
+  #     - existingDynamoStream:
+  #         tableName: ${self:provider.environment.TABLE_NAME}
+  #         streamType: NEW_IMAGE
+  #         startingPosition: LATESTclea
+
+package:
+  include:
+    - node_modules/**/node_modules/**/*.js
+    - node_modules/**/node_modules/**/package.json
+  exclude:
+    - .vscode/**
+    - .gitignore
+    - .env
+    - gulpfile.js
+    - package-lock.json
+    # aws-sdk is included in Lambda
+    - node_modules/**/aws-sdk/**
+    # aws-sdk is included in Lambda
+    - node_modules/**/bin/**
+    - node_modules/**/.editorconfig
+    - node_modules/**/.eslintrc.js
+    - node_modules/**/.travis.yml
+    - node_modules/**/.eslintrc
+    - node_modules/**/.jscsrc
+    - node_modules/**/.jshintignore
+    - node_modules/**/license.txt
+    - node_modules/**/tsconfig.json
+    - node_modules/**/monitor.json
+    - node_modules/**/*.md
+    - node_modules/**/*.ts
+    - node_modules/**/*.markdown
+    - node_modules/**/.npmignore
+    - node_modules/**/.jshintrc
+    - node_modules/**/LICENSE
+    - node_modules/**/LICENCE
+    - node_modules/**/license
+    - node_modules/**/Makefile
+    - node_modules/**/yarn.lock
+    - node_modules/**/package-lock.json
+    - node_modules/**/*.map
+    - node_modules/**/test/**
+    - node_modules/**/.vscode/**
+    - node_modules/**/tests/**
+    - node_modules/**/benchmark/**
+    - node_modules/**/scripts/**
+    - node_modules/**/__tests__/**
+    - node_modules/**/*.min.js
