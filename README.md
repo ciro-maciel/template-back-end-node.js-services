@@ -1,4 +1,4 @@
-## Template Back-end Node.js Services
+## Back-end Node.js Services
 
 <p align="center">
   <a href="#house-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -30,7 +30,7 @@ SaaS starter kit, foundation for your business
 
 **You need to install [Node.js](https://nodejs.org/en/download/) first, then in order to clone the project via HTTPS, run this command:**
 
-```$ git clone https://github.com/rili-saas-unique/template-back-end-node.js-services.git```
+```$ git clone https://github.com/rili-saas-unique/back-end-node.js-services.git```
 
 <br>
 
@@ -57,7 +57,7 @@ Run the following command in order to start the application in a development env
 
 ### :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the [Template Back-end Node.js Services](https://github.com/rili-saas-unique/template-back-end-node.js-services/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**!.
+Feel free to **file a new issue** with a respective title and description on the [Back-end Node.js Services](https://github.com/rili-saas-unique/back-end-node.js-services/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**!.
 
 <br>
 
