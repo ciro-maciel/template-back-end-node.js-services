@@ -3,6 +3,8 @@ service: template-services
 plugins:
   - serverless-dotenv-plugin
   - serverless-offline
+  - serverless-dynamo-stream-plugin  
+
 
 custom:
   dotenv:
@@ -31,28 +33,19 @@ functions:
   rest:
     memorySize: 128
     timeout: 30
-    handler: src/rest.handler
+    handler: src/services/rest.handler
     events:
       - http: ANY /
       - http: "ANY /{proxy+}"
   # index:
   #   memorySize: 128
-  #   handler: src/main.index
+  #   handler: src/services/stream.index
   #   timeout: 30
   #   events:
   #     - existingDynamoStream:
   #         tableName: ${self:provider.environment.TABLE_NAME}
   #         streamType: NEW_IMAGE
   #         startingPosition: LATEST
-  # notification:
-  #   memorySize: 128
-  #   handler: src/main.notification
-  #   timeout: 30
-  #   events:
-  #     - existingDynamoStream:
-  #         tableName: ${self:provider.environment.TABLE_NAME}
-  #         streamType: NEW_IMAGE
-  #         startingPosition: LATESTclea
 
 package:
   include:
